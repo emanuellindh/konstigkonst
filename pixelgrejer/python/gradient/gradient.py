@@ -10,9 +10,9 @@ for i in range(128):
     # if (i!=0):
         # myarray[i] = list(map(lambda x: x**(i/256), np.arange(-512,512,1)/128))
         # myarray[i] = list(map(lambda x: x**(i+64), np.arange(-64,64,1)/2048 + np.ones(128)))
-        myarray[i] = list(map(lambda x: x**(i/10), np.arange(-64,64,1)/50)) + np.ones(128)
+        myarray[i] = list(map(lambda x: x**(i), np.arange(-64,64,1)/16)) + np.ones(128)
 
-myarray = myarray*128
+myarray = myarray*16
 print(myarray)
 
 def sq(x):
@@ -23,6 +23,7 @@ print(mylist)
 # mylist = list(map(sq, mylist))
 mylist = list(map(lambda x: x**3, mylist))
 print(mylist)
+print(0.995**0.75)
 
 
 
