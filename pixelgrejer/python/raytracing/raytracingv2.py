@@ -1,6 +1,8 @@
 from PIL import Image
 from matplotlib import cm
 import numpy as np
+# import pixelgrejer.python.raytracing.geometry as geometry
+import geometry as geo
 
 width = 128
 height = 128
@@ -10,6 +12,9 @@ myHitBoxes = np.zeros((height, width))
 for i in range(3):
     for j in range(100):
         myHitBoxes[14+j][100+i] = 1
+myLines = []
+myLines.append(geo.line([100,10],[100,110]))
+myLines.append(geo.line([10,10],[30,119]))
 
 lightSource = (64,64)
 rays = 1600
@@ -25,7 +30,14 @@ def hitBox(x,y):
     
 # checks if path to light source is obstructed or not, if we should count it as a light or shadow
 def unobstructed(x, y):
-    return True
+    lineToLight = geo.line([lightSource[0],lightSource[1]],[x,y])
+    res = True
+    for l in myLines:
+        print(l)
+        print(lineToLight.startingPoint)
+        if geo.intersect(l, lineToLight):
+            res = False
+    return res
 
 def sendRay(angle, x, y):
     # Xdir = 1
@@ -102,14 +114,17 @@ def sendRay(angle, x, y):
 
 for i in range(width):
     for j in range(height):
-        angleToLightSource=np.atan2((lightSource[1]-j), (lightSource[0]-i))
+        # angleToLightSource=np.atan2((lightSource[1]-j), (lightSource[0]-i))
         # print("x: ", i)
         # print("y: ", j)
         # print("angle: ", angleToLightSource)
         # myCanvas[j][i] = 128 + angleToLightSource*(128/np.pi)
-        angleInDegrees = angleToLightSource*(180/np.pi)
-        if i == 10 and j == 10:
-            sendRay(angleInDegrees, i, j)
+        # angleInDegrees = angleToLightSource*(180/np.pi)
+        # if i == 10 and j == 10:
+        #     sendRay(angleInDegrees, i, j)
+        if unobstructed(i,j):
+            # print("au")
+            myCanvas[j][i] = 128
 
 # #add another light source
 # lightSource = (10,100)
