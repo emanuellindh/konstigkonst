@@ -1,0 +1,9 @@
+coordinate = 960, 400
+circlePos = 960, 1080
+circleRadius = 400
+third point = x, y
+
+960-x, 400-y . 960-x, 1080-y = 0
+(960-x)(960-x) + (400-y)(1080-y) = 0
+
+(960-x)^2 + (1080-y)^2 = circleRadius^2
