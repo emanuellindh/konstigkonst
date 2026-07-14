@@ -9,12 +9,6 @@ import os
 
 im = Image.open("canvas.png")
 
-# cutout = im.crop([48,8,56,16])
-# im.paste(cutout,[500,500])
-
-# im.show()
-# im = im.convert('RGB')
-# im.save("rt.png")
 
 def containsBlackPixels(nrBlackPixels, x, y):
     blackPixelsCounter = 0
